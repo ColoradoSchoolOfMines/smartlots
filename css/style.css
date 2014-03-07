@@ -1,0 +1,225 @@
+/* 
+    Document   : style
+    Created on : Feb 22, 2014, 6:24:36 PM
+    Author     : Th3mHungryR0b0ts
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+a {
+    color: #1fa2e9;
+}
+
+a:hover {
+    color: #43abe4;
+}
+
+body 
+{
+    
+    font-size: 9pt;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+/*    font-family: "trebuchet ms", helvetica, sans-serif;*/
+        background: url("/parking/images/SkyBackground.jpg") no-repeat top center;
+    font-style: normal;
+    z-index: -1;
+}
+#header {
+   
+    width:900px;
+    height:70px;
+    color: #5c5d5e;
+    overflow: hidden;
+}
+
+#info {
+    margin-top: 600px;
+    z-index: 99;
+}
+
+/*#time {
+    margin-left: 600px;
+    z-index: 99;
+}*/
+#header-logo {
+float: left;
+width: 312px;
+font-size: 12pt;
+margin-left: 55px;
+}
+
+h1 {
+    margin: 0;
+    padding:0;
+}
+
+#header-text {
+padding-top: 13px;
+font-size: 14pt;
+}
+
+#menu {
+    width: 800px;
+    height: 60px;
+     margin-left: 50px;
+}
+#menu a
+{
+color: #fff;
+text-decoration: none;
+font-size: 24pt;
+display:block;
+padding-top: 10px;
+padding-left: 65px;
+width:137px;
+height: 55px;
+}
+#menu a:hover
+{
+background: url("/parking/images/MenuLit.png") no-repeat top left;
+}
+
+.menu-lit {
+background: url("/parking/images/MenuLit.png") no-repeat top left;
+display:block;
+width:200px;
+height: 58px;
+}
+
+li
+{
+background: url("/parking/images/MenuNorm.png") no-repeat top left;
+float: left;
+}
+
+ul
+{
+list-style-type:none;
+margin-left: 0;
+padding-left: 0;
+} 
+
+#container {
+position:absolute;
+    margin-left: 50px;
+}
+#fullLot
+{
+    position:absolute;
+    left:0px;
+    top:0px;
+     background: url("/parking/images/CTLMShell.png") no-repeat left top;
+     height: 500px;
+     width: 620px;
+     z-index: 2;
+}
+
+/*a
+{
+display:block;
+width:60px;
+}*/
+
+#CTLMUpper {
+
+        font-weight: normal;
+    position:absolute;
+    font-size: 17pt;
+        color: #fff;
+    left:10px;
+    top:20px;
+    height: 160px; 
+    width: 250px;
+    padding: 80px 0 0 30px;
+    z-index: 1;    
+}
+
+#CTLMLower {
+font-weight: normal;
+    position:absolute;
+        font-size: 17pt;
+        color: #fff;
+    left:10px;
+    top:250px;
+    height: 160px;
+    width: 250px;
+    padding: 80px 0 0 20px;
+    z-index: 1;
+    
+}
+
+ .green-lot {
+    background-color: #79da63; /*green color*/
+    z-index: 1;    
+}
+
+.blue-lot {
+    background-color: #43abe4; /*blue-highlight color*/
+    z-index: 1;    
+}
+
+ .yellow-lot {
+    background-color:  #e2dc76; /*yellow color*/
+    z-index: 1; 
+}
+ .red-lot {
+    background-color: #d4585a; /*red color*/
+    z-index: 1; 
+}
+
+#footer {
+    margin-top: 480px;
+    margin-left: 400px;
+    height: 100px;
+    width: 300px;
+    z-index: 5;
+}
+
+#next-screen-container {
+    display: block;
+    color: #fff;
+    font-size: 24pt;
+    margin-left:-10px;
+    padding-bottom: 40px;
+    height:600px;
+    width:105%;
+   background-color: #1fa2e9;
+   overflow: hidden;
+}
+#next-screen-text-left {
+    float:left;
+    height:500px;
+    width: 30%;
+    padding-top:40px;
+    padding-left:20%;
+    padding-right: 40px;
+    padding-bottom:40px;
+}
+#next-screen-text-right{
+    color:#292929;;
+    padding-top:40px;
+    float:left;
+    height:500px;
+    width: 30%;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+#mini-logo {
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-bottom: 20px;
+    margin:-10px;
+        color:#5c5d5e;
+font-size: 12pt;
+}
+
+#next-screen-container a {
+    text-decoration: none;
+    color: #5c5d5e;
+}
