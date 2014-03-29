@@ -18,9 +18,9 @@ So we made this real-time sensor network at <a href="https://www.mines.edu/">CSM
     </div>
                     <div id="menu">
             <ul>
-<li ><a href="index.php">map</a></li>
-<li><a href="list.php">list</a></li>
-<li class="menu-lit"><a href="stats.php">stats</a></li>
+<li ><a href="/smartlots">map</a></li>
+<li><a href="/smartlots/list">list</a></li>
+<li class="menu-lit"><a href="/smartlots/stats">stats</a></li>
 </ul> 
         </div>
  
