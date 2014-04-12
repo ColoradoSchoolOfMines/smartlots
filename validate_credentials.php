@@ -6,8 +6,6 @@
 			return false;
 		}
 
-		return true;
-
 		// Try to connect to the database
 		@ $db = new mysqli('localhost', 'smartlots', 'M!nesRules', 'parking');
 		if (mysqli_connect_errno()) {
