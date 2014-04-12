@@ -1,6 +1,8 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'insert_fio_data.php';
+require 'validate_credentials.php';
 
 # Start the server/app
 $app = new \Slim\Slim();
@@ -39,16 +41,18 @@ $app->get('/admin', function () {
 ##############################################################
 
 $app->post('/fiodata', function() {
-	// $username = $_POST['username'];
-	// $password = $_POST['password'];
-	// if (username+password correct) {
-	readfile('insert_fio_data.php');
-	// } else {
-	// 	echo "Permission Denied. This invalid attempt has been logged for security purposes.";
-	// 	# Log attempt to database
-	// }
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	if ( validate($username, $password) ) {
+		process_fio_data($_POST);
+	} else {
+		echo "Permission Denied. This invalid attempt has been logged for security purposes.";
+		# Log attempt to database
+	}
 });
 
 $app->run();
+
+
 
 ?>
