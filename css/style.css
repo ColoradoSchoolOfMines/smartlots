@@ -25,7 +25,7 @@ body
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
 /*    font-family: "trebuchet ms", helvetica, sans-serif;*/
-        background: url("/parking/images/SkyBackground.jpg") no-repeat top center;
+        background: url("/smartlots/images/SkyBackground.jpg") no-repeat top center;
     font-style: normal;
     z-index: -1;
 }
@@ -81,11 +81,11 @@ height: 55px;
 }
 #menu a:hover
 {
-background: url("/parking/images/MenuLit.png") no-repeat top left;
+background: url("/smartlots/images/MenuLit.png") no-repeat top left;
 }
 
 .menu-lit {
-background: url("/parking/images/MenuLit.png") no-repeat top left;
+background: url("/smartlots/images/MenuLit.png") no-repeat top left;
 display:block;
 width:200px;
 height: 58px;
@@ -93,7 +93,7 @@ height: 58px;
 
 li
 {
-background: url("/parking/images/MenuNorm.png") no-repeat top left;
+background: url("/smartlots/images/MenuNorm.png") no-repeat top left;
 float: left;
 }
 
@@ -113,7 +113,7 @@ position:absolute;
     position:absolute;
     left:0px;
     top:0px;
-     background: url("/parking/images/CTLMShell.png") no-repeat left top;
+     background: url("/smartlots/images/CTLMShell.png") no-repeat left top;
      height: 500px;
      width: 620px;
      z-index: 2;
