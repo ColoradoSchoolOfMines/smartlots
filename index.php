@@ -3,6 +3,7 @@
 require 'vendor/autoload.php';
 require 'insert_fio_data.php';
 require 'validate_credentials.php';
+require 'createAccount.php';
 
 # Start the server/app
 $app = new \Slim\Slim();
@@ -34,7 +35,7 @@ $app->get('/map', function() {
 
 # admin interface homepage
 $app->get('/admin', function () {
-	readfile('');
+	readfile('createAccount.html');
 });
 
 ############ BACK END (PARKING SYSTEM) ROUTES ################
@@ -51,8 +52,11 @@ $app->post('/fiodata', function() {
 	}
 });
 
+# Adds a new user
+$app->post('/users', function() {
+	create_account($_POST);
+});
+
 $app->run();
-
-
 
 ?>
