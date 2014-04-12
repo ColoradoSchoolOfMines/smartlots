@@ -2,7 +2,7 @@
 
 function process_fio_data($dataArray){
 	$db = mysqli_connect("parking", "root", "M!nesRules", "parking");
-	postToSmartLots($dataArray["id"], $dataArray["carcount"], $dataArray["voltage"], $dataArray["temperature"], $dataArray["window"], $db)
+	postToSmartLots($dataArray["id"], $dataArray["carcount"], $dataArray["voltage"], $dataArray["temperature"], $dataArray["window"], $db);
 }
 
 
