@@ -4,9 +4,7 @@ function doPost($sensorID, $carcount, $battery, $db){
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
 	
-
-
-		//now we have previous car count, check to see if increasing or decresing
+	//now we have previous car count, check to see if increasing or decresing
 		
 	//update the sensor table
 	$previousCarCount = 0;
