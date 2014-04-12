@@ -3,7 +3,7 @@
 	function create_account($post_array) {
 
 		// Try to connect to the database
-		@ $db = new mysqli('acmxlabs.org', 'root', 'M!nesRules', 'parking');
+		@ $db = new mysqli('localhost', 'smartlots', 'M!nesRules', 'parking');
 		if (mysqli_connect_errno()) {
 			echo
 				"<div class = \"serverMessage\">" .
