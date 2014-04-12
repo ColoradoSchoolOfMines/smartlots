@@ -17,6 +17,13 @@
 		$username = $post_array['username'];
 		$password = md5($post_array['password']);
 
+		if ( is_null($username) || is_null($password) || $username == "" || $password == "" ) {
+			echo
+				"<div class = \"serverMessage\">" .
+					"Please enter a valid username and password." .
+				"</div>";
+		}
+
 		// Check if username exists
 		$check_user_name_query = "select id from users where username = ?";
 		$stmt = $db->prepare($check_user_name_query);
@@ -44,8 +51,6 @@
 
 		// Bind the parameters to the query
 		$stmt->bind_param("ss", $username, $password);
-
-		echo "hello";
 
 		if ( !($stmt->execute()) ) {
 			// Result was false (error inserting into database)

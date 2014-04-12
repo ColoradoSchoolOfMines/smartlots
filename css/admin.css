@@ -1,0 +1,13 @@
+#create_user_table td {
+	padding: 5px;
+}
+
+.server_message {
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+	font-size: 1.5em;
+	color: black;
+}
