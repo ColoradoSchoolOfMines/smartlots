@@ -1,5 +1,10 @@
 <?php
 
+function process_fio_data($dataArray){
+	$db = mysqli_connect("parking", "root", "M!nesRules", "parking");
+	postToSmartLots($dataArray["id"], $dataArray["carcount"], $dataArray["voltage"], $dataArray["temperature"], $dataArray["window"], $db)
+}
+
 
 function postToSmartLots($sensorID, $carcount, $voltage, $temperature, $window, $db){ // post to the database and do the post to the log
 
