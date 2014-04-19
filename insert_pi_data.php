@@ -27,10 +27,6 @@
 
 		move_uploaded_file( $_FILES['image']['tmp_name'], "$file_path" );
 
-		echo "Pi Data Successfully Received.";
-		echo "Url: $url\n";
-		echo "Id: $id\n";
-
 		$insert_query = "insert into images (sensor_id, url) values (?, ?)";
 		$stmt = $db->prepare($insert_query);
 		$stmt->bind_param("ss", $id, $url);
