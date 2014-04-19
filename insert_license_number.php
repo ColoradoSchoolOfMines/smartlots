@@ -9,8 +9,11 @@
 			exit;
 		}
 
-		$license_number = get_license_number($image_filepath, $image_url);
-		$state = NULL;
+
+		$license_info = get_license_number($image_filepath, $image_url);
+		
+		$license_number = $license_info[0];
+		$state = $license_info[1];
 
 		insert_license_number($license_number, $state, $image_id, $db);
 		
@@ -18,7 +21,8 @@
 
 	// Gets the license plate number from the alpr software.
 	function get_license_number($image_filepath, $image_url) {
-		$license_number = "614-VIP";		
+		$license_number = "614-VIP";
+		$state = NULL;		
 
 		/*
 		 *
@@ -28,7 +32,12 @@
 		 *
 		 */
 
-		return $license_number;
+		$license_info = array(
+			0 => $license_number,
+			1 => $state
+		);
+
+		return $license_info;
 	}
 
 	// Insert the license plate numbers to the database
