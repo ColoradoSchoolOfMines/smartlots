@@ -9,6 +9,8 @@
 	# Start the server/app
 	$app = new \Slim\Slim();
 
+	date_default_timezone_set('America/Denver');
+
 	# Define all the routes our application will accept below
 
 	############### FRONT END (WEBPAGE) ROUTES ###################
@@ -40,17 +42,25 @@
 	});
 
 	# create a user account
-	$app->get('/user/new', function() {
+	$app->get('/users/new', function() {
 		readfile('createAccount.html');
 	});
 
 	# view all users
-	$app->get('/user', function() {
+	$app->get('/users', function() {
 		readfile('users.html');
 	});
 
+	$app->get('/addImage', function() {
+		readfile('addImage.html');
+	});
+
+	$app->get('/imageViewer', function() {
+		readfile('imageViewer.html');
+	});
+
 	# adds a new user
-	$app->post('/user', function() {
+	$app->post('/users', function() {
 		create_account($_POST);
 	});
 
@@ -79,11 +89,17 @@
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		if ( validate($username, $password) ) {
-			process_pi_data($_POST);
+			process_pi_data($_POST, $_FILES);
 		} else {
 			echo "Permission Denied. This invalid attempt has been logged for security purposes.";
 			# Log attempt to database
 		}
+	});
+
+	# Return the image with the specified date/timestamp
+	$app->get('/images/:date', function($date) {
+		header('Content-Type: image/png');
+		imagepng(imagecreatefrompng("/var/license_plates/images/$date"));
 	});
 
 	$app->run();

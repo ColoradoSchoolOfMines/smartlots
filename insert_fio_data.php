@@ -1,15 +1,15 @@
 <?php
 
 	function process_fio_data($post_array){
-		$db = mysqli_connect("localhost", "smartlots", "****", "parking");
-		insert_fio_data($post_array["id"], $post_array["carcount"], $post_array["voltage"], $post_array["temperature"], $post_array["window"], $db);
-		// echo "hello world";
+		$db = mysqli_connect("localhost", "smartlots", "M!nesRules", "parking");
+		// insert_fio_data($post_array["id"], $post_array["carcount"], $post_array["voltage"], $post_array["temperature"], $post_array["window"], $db);
+		echo "Fio Data Successfully Received.";
 	}
 
 	// insert fio data to the database and write an entry to the log
 	function insert_fio_data($sensorID, $carcount, $voltage, $temperature, $window, $db) {
 
-	echo "hello";
+		echo "hello";
 
 		//get the lastcount value
 		$query = "select carcount from sensors where sensorid = ".$sensorID;

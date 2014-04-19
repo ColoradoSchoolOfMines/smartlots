@@ -40,7 +40,7 @@
 			echo
 				"<div class = \"serverMessage\">" .
 					"We're sorry, the username '" . $username . "' has already been taken.<br>" .
-					"<a class = \"serverMessage\" href = \"#\" onclick = \"closeAccountPopup()\">Return to Home</a>" .
+					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
 				"</div>";
 				exit;
 		}
