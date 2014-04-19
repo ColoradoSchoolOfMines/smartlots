@@ -14,8 +14,6 @@
 		
 		$license_number = $license_info[0];
 		$intrada_license_number = $license_info[1];
-		echo $license_number;
-		echo $intrada_license_number;
 		$state = $license_info[2];
 
 		insert_license_number($license_number, $state, $image_id, $db);
