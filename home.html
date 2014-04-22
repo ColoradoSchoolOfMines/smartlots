@@ -5,44 +5,27 @@
         <link rel="icon" type="image/png" href="images/favicon.png">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="/smartlots/css/style.css">
-        <script type="text/javascript" language="javascript" src="/smartlots/js/json2.js"></script>
-        <script type="text/javascript" language="javascript" src="/smartlots/js/controller.js"></script>
-        <script>
-        start();
-        </script>
+        <script src="/smartlots/js/json2.js"></script>
+        <script src="/smartlots/js/controller.js"></script>
+        <script src="js/templates.js"></script>
+        <script>start();</script>
         <title>SmartLots</title>
     </head>
-    <body>
-        <div id="header">
-            <div id="header-logo"><img src="images/SmartLotsLogo.png" alt="Smart Lots Logo" width="296" height="72"> </div>
-
-            <div id="header-text"> <h1>Parking Fixed.</h1>
-            </div>
-        </div>
-        <div id="menu">
-            <ul>
-                <li class="menu-lit"><a href="/smartlots">map</a></li>
-                <li><a href="/smartlots/list">list</a></li>
-                <li><a href="/smartlots/stats">stats</a></li>
-            </ul> 
-        </div>
-        <div id="container">
-
+    <body onload = "insertTemplates('map')">
+        <div id = "header"></div>
+        <div id = "menu"></div>
+        <div id = "container">
             <div id="CTLMUpper" class="blue-lot">
                Calculating...
             </div>
             <div id="CTLMLower" class="blue-lot">
-                Calculating...
+               Calculating...
             </div>
-            <div id="fullLot"> 
-            </div>
+            <div id="fullLot"></div>
             <div id="info"></div>
-
         </div>
-
-        <div id="footer">
+        <div id = "footer">
             <img src="images/ArrowDown.png" alt="Downzies" width="61" height="57">
-
         </div>
 
         <div id="next-screen-container"> 
@@ -58,8 +41,6 @@
                 <img src="images/happyface.png" alt="anry" width="218" height="210">
             </div>
         </div>
-        <div id="mini-logo">A project by: <a href="http://www.acmxlabs.org"><img src="images/ACMxTeenyStamp.png" alt="ACMxLabs.org" width="99" height="43"></a>
-            Design by Roy Stillwell. ACMxlabs.org. Copyright 2014.
-        </div>
+        <div id="mini-logo"></div>
     </body>
 </html>

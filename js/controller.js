@@ -66,7 +66,7 @@ function grabData() {
     {
  
         var key = "mainpage";
-        var url = '/parking/monitor/?requestor=' + key + '&amp;uniqueifier=' +new Date();
+        var url = '/smartlots/monitor/?requestor=' + key + '&amp;uniqueifier=' +new Date();
         
         //this sends an initial request immediately.
          sendAjaxGetRequest(url, function(){updatePage()});

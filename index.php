@@ -5,6 +5,7 @@
 	require 'insert_pi_data.php';
 	require 'validate_credentials.php';
 	require 'createAccount.php';
+	require 'queryUsers.php';
 
 	# Start the server/app
 	$app = new \Slim\Slim();
@@ -17,7 +18,7 @@
 	##############################################################
 
 	# return 'home.php' when someone requests the root of our site
-	$app->get('/', function () {
+	$app->get('/', function() {
 		readfile('home.html');
 	});
 
@@ -48,7 +49,7 @@
 
 	# view all users
 	$app->get('/users', function() {
-		readfile('users.html');
+		extractAllUsers();
 	});
 
 	$app->get('/addImage', function() {
@@ -65,9 +66,9 @@
 	});
 
 	# deletes a user
-	// $app->delete('/user', function() {
-	// 	delete_account($_POST);
-	// });
+	$app->delete('/user/:id', function($id) {
+		delete_user($id);
+	});
 
 	############ BACK END (PARKING SYSTEM) ROUTES ################
 	##############################################################

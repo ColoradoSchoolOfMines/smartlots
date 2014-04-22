@@ -7,9 +7,7 @@
 
 		if (mysqli_connect_errno()) {
 			echo
-				"<div class = \"serverMessage\">" .
-					"Error: Could not connect to the database. Please try again later.<br>" .
-				"</div>";
+				"Error: Could not connect to the database. Please try again later.";
 			exit;
 		}
 
@@ -42,7 +40,8 @@
 					"We're sorry, the username '" . $username . "' has already been taken.<br>" .
 					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
 				"</div>";
-				exit;
+			$db->close();
+			exit;
 		}
 
 		// Prepare user query
@@ -59,6 +58,7 @@
 					"Error: Your account was not successfully created. Please try again later.<br>" .
 					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
 				"</div>";
+			$db->close();
 			exit;
 		} else {
 			echo
