@@ -59,11 +59,11 @@
 		$row = mysqli_fetch_array($result);
 		$newCount = $row["carcount"] + $totalChange;
 
-/*
 		//post the new value for the lot
 		$query = "update parking.lots set carcount = ".$newCount." where lotid = ".$lotID;
 		$db->query($query);
 		
+/*
 		//now that the data is updated, post to the database log
 		postToLog($sensorID, $carcount, $voltage, $temperature, $window, $db);
 			
