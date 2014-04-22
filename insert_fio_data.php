@@ -9,6 +9,8 @@
 	// insert fio data to the database and write an entry to the log
 	function insert_fio_data($sensorID, $carcount, $voltage, $temperature, $window, $db) {
 
+		
+		
 		//get the lastcount value
 		$query = "select carcount from sensors where sensorid = ".$sensorID;
 		$result = $db->query($query);
@@ -34,7 +36,7 @@
 		$statement->fetch(); 
 		$statement->close();
 		
-		//get all the sensors associated to that lot. can also stop using prepared statments as of now since any query is being genrated from info already in the database
+		// Get all the sensors associated to that lot. can also stop using prepared statments as of now since any query is being genrated from info already in the database
 		$query = "select sensorid from parking.sensormapping where lotid = ".$lotID;
 		$result = $db->query($query);
 		$lotSensors = [];
@@ -42,7 +44,7 @@
 			array_push($lotSensors, $row["sensorid"]);
 		}
 		
-		//calculate the differential for the lot
+		// Calculate the differential for the lot
 		$totalChange = 0;
 		while(count($lotSensors)){
 			$query = "select carcount, lastcount from parking.sensor where sensorid = ".array_pop($lotSensors);
@@ -51,7 +53,7 @@
 			$totalChange += $row["carcount"] - $row["lastcount"];
 		}	
 
-		//calculat the new value for lot
+		// Calculate the new value for lot
 		$query = "select carcount from lots where lotid = ".$lodID;
 		$result = $db->query($query);
 		$row = mysqli_fetch_array($result);
