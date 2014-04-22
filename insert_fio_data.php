@@ -9,8 +9,6 @@
 	// insert fio data to the database and write an entry to the log
 	function insert_fio_data($sensorID, $carcount, $voltage, $temperature, $window, $db) {
 
-		
-		
 		//get the lastcount value
 		$query = "select carcount from sensors where sensorid = ".$sensorID;
 		$result = $db->query($query);
@@ -76,7 +74,7 @@
 		$statement->bind_param("iiiis", $sensorID, $carcount, $voltage, $temperature, $window);
 		$statement->execute();
 		$statement->close();
-		
+
 	}
 
 ?>
