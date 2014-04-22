@@ -51,13 +51,13 @@
 			$totalChange += $row["carcount"] - $row["lastcount"];
 		}	
 
-/*
 		//calculat the new value for lot
 		$query = "select carcount from lots where lotid = ".$lodID;
 		$result = $db->query($query);
 		$row = mysqli_fetch_array($result);
 		$newCount = $row["carcount"] + $totalChange;
 
+/*
 		//post the new value for the lot
 		$query = "update parking.lots set carcount = ".$newCount." where lotid = ".$lotID;
 		$db->query($query);
