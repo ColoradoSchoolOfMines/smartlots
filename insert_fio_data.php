@@ -62,11 +62,11 @@
 		// Calculate the differential for the lot
 		$totalChange = 0;
 		while(count($lotSensors)){
-			$sensor = array_pop($lotSensorts);
-			$query = "select carcount, lastcount from parking.sensor where sensorid = "$sensor;
+			$sensor = array_pop($lotSensors);
+			$query = "select carcount, lastcount from parking.sensors where sensorid = " . $sensor;
 			$result = $db->query($query);
 			if($result == false){
-				echo "Could not pull sensor data attached to sensorID ".$sensor;
+				echo "Could not pull sensor data attached to sensorID " . $sensor;
 				$db->close();
 				exit;
 			}
@@ -75,7 +75,7 @@
 		}	
 
 		// Calculate the new value for lot
-		$query = "select carcount from lots where lotid = ".$lodID;
+		$query = "select carcount from lots where lotid = ".$lotID;
 		$result = $db->query($query);
 		if($result == false){
 			echo "Could not pull carcount attached to lotID ".$lotID;
