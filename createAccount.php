@@ -3,7 +3,7 @@
 	function create_account($post_array) {
 
 		// Try to connect to the database
-		$db = new mysqli('localhost', 'smartlots', 'M!nesRules', 'parking');
+		$db = new mysqli('localhost', 'wsn', 'raspberryp1', 'parking');
 
 		if (mysqli_connect_errno()) {
 			echo

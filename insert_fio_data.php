@@ -1,7 +1,7 @@
 <?php
 
 	function process_fio_data($post_array){
-		$db = mysqli_connect("localhost", "smartlots", "M!nesRules", "parking");
+		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
 		if (mysqli_connect_errno()) {
 			echo "Error: Could not connect to the database. Please try again later.";
 			exit;

@@ -1,7 +1,7 @@
 <?php
 
 	function process_license_data($image_filepath, $image_url, $image_id){
-		$db = mysqli_connect("localhost", "smartlots", "M!nesRules", "parking");
+		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
 		
 		if (mysqli_connect_errno()) {
 			echo

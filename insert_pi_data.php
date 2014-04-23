@@ -2,7 +2,7 @@
 	require 'insert_license_number.php';
 
 	function process_pi_data($post_array, $files_array){
-		$db = mysqli_connect("localhost", "smartlots", "M!nesRules", "parking");
+		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
 		
 		if (mysqli_connect_errno()) {
 			echo
