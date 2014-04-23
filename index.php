@@ -100,7 +100,7 @@
 	# Return the image with the specified date/timestamp
 	$app->get('/images/:date', function($date) {
 		header('Content-Type: image/jpg');
-		imagepng(imagecreatefrompng("/var/license_plates/images/$date"));
+		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
 	});
 
 	$app->run();
