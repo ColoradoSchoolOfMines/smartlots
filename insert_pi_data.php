@@ -21,8 +21,8 @@
 		list($usec, $sec) = explode(" ", microtime());
 		$timestamp = $d->format('Y-m-d_H:i:s') . '.' . substr($usec, 2);
 
-		$file_path = "/var/license_plates/images/$timestamp" . ".png";
-		$url = "http://acmxlabs.org/smartlots/images/$timestamp" . ".png";
+		$file_path = "/var/license_plates/images/$timestamp" . ".jpg";
+		$url = "http://acmxlabs.org/smartlots/images/$timestamp" . ".jpg";
 		$id = $post_array['id'];
 
 		move_uploaded_file( $_FILES['image']['tmp_name'], "$file_path" );
