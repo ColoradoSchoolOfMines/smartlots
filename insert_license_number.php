@@ -28,15 +28,43 @@
 		$license_number = "614-VIP";
 		$intrada_license_number = "XXX-OOO";
 		$state = NULL;		
+		// Start the OpenALPR engine on the ACMx server.
+		// Sample result string (plate is LTM378):
+		// - LTM378 confident: 92.4582 template_match: 0
+		$unfiltered_result = exec("/var/license_plates_openalpr/src/alpr -r /var/license_plates/openalpr/runtime_data -n 1 $image_filepath");
+		$exploded_result = explode(' ', $unfiltered_result);
+		/*$c = count($exploded_result);
+		$f = fopen("brandondebug.txt",'w');
+		fwrite($f, $c);
+		fwrite($f, "$image_filepath");
+		fwrite($f, '\n');
+		fwrite($f, var_dump($unfiltered_result));
+		fwrite($f, var_dump($exploded_result));
+		fclose($f);*/
+		$license_number = $exploded_result[5];
 
-		/*
-		 *
-		 *
-		 * BRANDON: THIS IS YOUR FUNCTION TO FILL OUT
-		 *
-		 *
-		 */
+		// Create a SOAP request for Intrada ALPR cloud service.
+		$intrada_client = new SoapClient('http://intrada2.cloudapp.net/IntradaService.asmx?WSDL',
+		    array('soap_version' => SOAP_1_2));
+		$intrada_request = $intrada_client->IntradaRecognizeDirectPassage(
+		    array(
+		      'project' => 'brodrigu.demo',
+		      'key' => '8053',
+		      'images' => array($image_url),
+		      'metadata' => array()
+		    )
+		);
 
+		// Sample result string (plate is LTM378):
+		// RESULT:{hash}:{plate},{confidence},{state},{confidence},{coordinates of license plate in image}:{execution time}
+		// RESULT:592E1EE8D1DE427BB6E0042F34745523:LTM378,750,USA_CO,750,(309,156),(503,159),(309,206),(503,207):1594
+		$unfiltered_result = $intrada_request->IntradaRecognizeDirectPassageResult;
+		$exploded_result = explode(':', $unfiltered_result);
+		$unfiltered_result = $exploded_result[2];
+		$exploded_result = explode(',', $unfiltered_result);
+		$intrada_license_number = $exploded_result[0];
+		$state = $exploded_result[2];
+		 
 		$license_info = array(
 			0 => $license_number,
 			1 => $intrada_license_number,
