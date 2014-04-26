@@ -19,6 +19,8 @@
 	<body onload = "loadLicenses()">
 	    <h1>All License Plates</h1>
         <table id = "license_table"></table>
+        <br><br>
+        <a href = "/smartlots/admin/add_image.php">Add new Image</a>
 	</form>
 	</body>
 </html>

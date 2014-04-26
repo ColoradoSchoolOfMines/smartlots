@@ -41,5 +41,7 @@
 				</tr>
 			</table>
 		</form>
+		<br><br>
+		<a href = "/smartlots/admin/view_licenses.php">View Licenses</a>
 	</body>
 </html>
