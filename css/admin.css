@@ -6,14 +6,30 @@ h1 {
 	margin: .5em 0em .5em 0em;
 }
 
-table {
+#license_table, #intrada_license_table {
+	font-size: 10pt;
+	vertical-align: top;
 	border: 2px solid black;
 	border-collapse: collapse;
 }
 
-table td, table th {
+#license_table td, #intrada_license_table td, #license_table th, #intrada_license_table th {
 	border: 2px solid black;
 	padding: .5em;
+}
+
+th {
+	font-size: 1.5em;
+	padding: 1em;
+}
+
+#image_viewer {
+	display: none;
+	position: absolute;
+	top: 15%;
+	left: 25%;
+	width: 75%;
+	z-index: 1;
 }
 
 .server_message {

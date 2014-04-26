@@ -102,6 +102,25 @@
 		delete_license($id);
 	});
 
+	############## INTRADA PLATE NUMBER ROUTES ###################
+	##############################################################
+
+	$app->get('/intradalicenses', function() {
+		extract_all_intrada_licenses();
+	});
+
+	$app->get('/intradalicenses/:id', function($id) {
+		extract_license($id);
+	});
+
+	$app->post('/intradalicenses', function() {
+		create_license($_POST);
+	});
+
+	$app->delete('/intradalicenses/:id', function($id) {
+		delete_license($id);
+	});
+
 	##################### SENSOR DATA ROUTES #####################
 	##############################################################
 

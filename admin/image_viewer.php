@@ -21,7 +21,7 @@
 				var urlInput = document.getElementById("url_input");
 				url += urlInput.value;
 				var imageDiv = document.getElementById("image_div");
-				imageDiv.innerHTML = "<img src = \"" + url + "\">"; 
+				imageDiv.innerHTML = "<img src = \"" + url + "\">";
 			}
 		</script>
 	<body>
