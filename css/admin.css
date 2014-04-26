@@ -1,5 +1,19 @@
-table td {
-	padding: 5px;
+body {
+	font-size: 12pt;
+}
+
+h1 {
+	margin: .5em 0em .5em 0em;
+}
+
+table {
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+
+table td, table th {
+	border: 2px solid black;
+	padding: .5em;
 }
 
 .server_message {

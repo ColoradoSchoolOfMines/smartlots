@@ -13,8 +13,6 @@ function loadLicenses() {
 
 			var response = request.responseText;
 
-			alert(response);
-
 			var licenses = JSON.parse(response);
 
 			var licenseTable = document.getElementById("license_table");
