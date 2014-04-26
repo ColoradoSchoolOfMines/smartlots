@@ -55,7 +55,9 @@
       $unfiltered_result = $exploded_result[2];
       $exploded_result = explode(',', $unfiltered_result);
       $intrada_license_number = $exploded_result[0];
-      $state = $exploded_result[2];
+      if ($unfiltered_result != '[reject]') {
+        $state = $exploded_result[2];
+      }
 		}
     
     // $license_number will be FAIL if OpenALPR didn't find a number, or the plate/partial.
