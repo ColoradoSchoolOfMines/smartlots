@@ -15,32 +15,27 @@ function loadLicenses() {
 
 			alert(response);
 
-			// var users = JSON.parse(response);
+			var licenses = JSON.parse(response);
 
-			// var usersDiv = document.getElementById("users");
-			// usersDiv.innerHTML =
-			// 	"<table>" +
-			// 		"<tr>" +
-			// 			"<th>Id</th>" +
-			// 			"<th>Username</th>" +
-			// 			"<th>Action</th>" +
-			// 		"</tr>"
-			// ;
+			var licenseTable = document.getElementById("license_table");
+			licenseTable.innerHTML =
+				"<tr>" +
+					"<th>Number</th>" +
+					"<th>State</th>" +
+					"<th>Image url</th>" +
+				"</tr>"
+			;
 			
-			// for ( var i = 0; i < users.length; i++ ) {
-			// 	var user = users[i];
-			// 	usersDiv.innerHTML +=
-			// 		"<tr>" +
-			// 			"<td>" + user.id + "</td>" +
-			// 			"<td>" + user.username + "</td>" +
-			// 			"<td><a href = \"#\" onclick = \"removeUser(" + user.id ")\">Remove</a></td>" +
-			// 		"</tr>"
-			// 	;
-			// }
-
-			// usersDiv.innerHTML += "</table>";
-
-
+			for ( var i = 0; i < licenses.length; i++ ) {
+				var license = licenses[i];
+				licenseTable.innerHTML +=
+					"<tr>" +
+						"<td>" + license.number + "</td>" +
+						"<td>" + license.state + "</td>" +
+						"<td>" + license.url + "</td>" +
+					"</tr>"
+				;
+			}
 		}
 	}
 

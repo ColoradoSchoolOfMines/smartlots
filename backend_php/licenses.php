@@ -2,6 +2,33 @@
 
 	require_once 'database_connector.php';
 
+	function extract_all_licenses() {
+		$db = connect_to_db();
+		$select_statement = "select licenses.id, licenses.number, licenses.state, images.url from licenses, images where licenses.image_id = images.id";
+		
+		$stmt = $db->prepare($select_statement);
+
+		if ( !($stmt->execute()) ) {
+			// Result was false (error inserting into database)
+			echo "Error: the license number was not saved correctly.";
+			$db->close();
+			exit;
+		}
+
+		$json = "[";
+
+		$stmt->bind_result($id, $number, $state, $url);
+
+		while ( $stmt->fetch() ) {
+			$info = array('id'=>$id, 'number'=>$number, 'state'=>$state, 'url'=>$url);
+			$json = $json . json_encode($info) . ",";
+		}
+
+		echo substr_replace($json, "]", -1);
+
+		$db->close();
+	}
+
 	function process_license_data($image_filepath, $image_url, $image_id){
 		$db = connect_to_db();
 

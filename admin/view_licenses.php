@@ -13,14 +13,12 @@
         <link rel="stylesheet" type="text/css" href="/smartlots/css/admin.css">
         <script src="/smartlots/js/json2.js"></script>
         <script src="/smartlots/js/controller.js"></script>
-        <script src="js/templates.js"></script>
-        <script src="js/licenses.js"></script>
+        <script src="/smartlots/js/templates.js"></script>
+        <script src="/smartlots/js/licenses.js"></script>
         <title>View Licenses</title>
-	<body>
-	    <input id = "url_input">
-	    <a href = "#" onclick = "loadLicenses();">Go</a>
-	    <br>
-	    <div id = "image_div"></div>
+	<body onload = "loadLicenses()">
+	    <h1>All License Plates</h1>
+        <table id = "license_table"></table>
 	</form>
 	</body>
 </html>
