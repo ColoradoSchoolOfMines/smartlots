@@ -80,7 +80,7 @@
     if (!is_soap_fault($unfiltered_result)) {
       $exploded_result = explode(':', $unfiltered_result);
       $unfiltered_result = $exploded_result[2];
-      if ($unfiltered_result = '[reject]') {
+      if ($unfiltered_result == '[reject]') {
         $unfiltered_result = 'REJECT';
       }
       $exploded_result = explode(',', $unfiltered_result);
