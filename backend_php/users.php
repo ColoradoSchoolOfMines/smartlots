@@ -1,15 +1,11 @@
 <?php
 
-	function create_account($post_array) {
+	require_once 'database_connector.php';
+
+	function create_user($post_array) {
 
 		// Try to connect to the database
-		$db = new mysqli('localhost', 'wsn', 'raspberryp1', 'parking');
-
-		if (mysqli_connect_errno()) {
-			echo
-				"Error: Could not connect to the database. Please try again later.";
-			exit;
-		}
+		$db = connect_to_db();
 
 		// Get field information from Create Account page
 		$username = $post_array['username'];
@@ -31,7 +27,7 @@
 		$stmt->bind_result($check_user_name_query_result);
 		$stmt->fetch();
 		$stmt->free_result();
-		
+
 		// $check_user_name_query_result;
 
 		if ($check_user_name_query_result != null) {
@@ -70,6 +66,19 @@
 
 		// Close the database
 		$db->close();
+
+	}
+	
+	function extract_all_users() {
+		$db = connect_to_db();
+		$select_query = "select id, username from users";
+		// Finish querying database
+
+		echo "[\"" . "{\"username\":\"tsallee\", \"id\":1}" . "\",\"" . "{\"username\":\"brodriguez\", \"id\":2}" . "\"]";
+		
+	}
+
+	function delete_user($userID) {
 
 	}
 

@@ -223,3 +223,10 @@ font-weight: normal;
     text-decoration: none;
     color: #5c5d5e;
 }
+
+#login_div {
+    position: absolute;
+    top: 0em;
+    right: 1em;
+    z-index: 1;
+}

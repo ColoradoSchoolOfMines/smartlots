@@ -3,6 +3,7 @@ function insertTemplates(pageName) {
 	var header = document.getElementById('header');
 	var menu = document.getElementById('menu');
 	var miniLogo = document.getElementById('mini-logo');
+    var loginDiv = document.getElementById('login_div');
 
 	header.innerHTML =
 		"<div id=\"header-logo\">" +
@@ -47,5 +48,7 @@ function insertTemplates(pageName) {
 		"</a>" +
         "Design by Roy Stillwell. ACMxlabs.org. Copyright 2014."
     ;
+
+    loginDiv.innerHTML = "<a href = \"/smartlots/admin.php\" target = _blank>Log in</a>";
 
 }

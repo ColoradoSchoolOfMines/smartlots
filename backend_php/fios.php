@@ -1,11 +1,9 @@
 <?php
+	
+	require_once 'database_connector.php';
 
 	function process_fio_data($post_array){
-		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
-		if (mysqli_connect_errno()) {
-			echo "Error: Could not connect to the database. Please try again later.";
-			exit;
-		}
+		$db = connect_to_db();
 		insert_fio_data($post_array["id"], $post_array["carcount"], $post_array["voltage"], $post_array["temperature"], $post_array["window"], $db);
 		//echo "Fio Data Successfully Received.";
 	}
@@ -90,12 +88,11 @@
 		$db->query($query);
 		
 		//now that the data is updated, post to the database log
-		postToLog($sensorID, $carcount, $voltage, $temperature, $window, $db);
-			
+		post_to_log($sensorID, $carcount, $voltage, $temperature, $window, $db);
 		
 	}
 
-	function postToLog($sensorID, $carcount, $voltage, $temperature, $window, $db){
+	function post_to_log($sensorID, $carcount, $voltage, $temperature, $window, $db){
 		
 		$query = "insert into parking.log(sensorid, localcount, date, voltage, temp, windowdata) values (?, ?, NOW(), ?, ?, ?)";
 		$statement = $db->prepare($query);

@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+    require 'authorization.php'
+?>
+
 <html>
 	<head profile="http://www.w3.org/2005/10/profile">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

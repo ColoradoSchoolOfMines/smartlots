@@ -1,14 +1,9 @@
 <?php
 
-	function process_license_data($image_filepath, $image_url, $image_id){
-		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
-		
-		if (mysqli_connect_errno()) {
-			echo
-				"Error: Could not connect to the database. Please try again later.";
-			exit;
-		}
+	require_once 'database_connector.php';
 
+	function process_license_data($image_filepath, $image_url, $image_id){
+		$db = connect_to_db();
 
 		$license_info = get_license_number($image_filepath, $image_url);
 		
@@ -25,22 +20,15 @@
 
 	// Gets the license plate number from the alpr software.
 	function get_license_number($image_filepath, $image_url) {
-		$license_number = "614-VIP";
-		$intrada_license_number = "XXX-OOO";
+		$license_number = "default";
+		$intrada_license_number = "default";
 		$state = NULL;		
 		// Start the OpenALPR engine on the ACMx server.
 		// Sample result string (plate is LTM378):
 		// - LTM378 confident: 92.4582 template_match: 0
-		$unfiltered_result = exec("/var/license_plates_openalpr/src/alpr -r /var/license_plates/openalpr/runtime_data -n 1 $image_filepath");
+		$unfiltered_result = exec("/var/license_plates/openalpr/src/alpr -r /var/license_plates/openalpr/runtime_data -n 1 $image_filepath");
 		$exploded_result = explode(' ', $unfiltered_result);
-		/*$c = count($exploded_result);
-		$f = fopen("brandondebug.txt",'w');
-		fwrite($f, $c);
-		fwrite($f, "$image_filepath");
-		fwrite($f, '\n');
-		fwrite($f, var_dump($unfiltered_result));
-		fwrite($f, var_dump($exploded_result));
-		fclose($f);*/
+
 		$license_number = $exploded_result[5];
 
 		// Create a SOAP request for Intrada ALPR cloud service.

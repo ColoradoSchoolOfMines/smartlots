@@ -1,14 +1,9 @@
 <?php
-	require 'insert_license_number.php';
+	require_once 'licenses.php';
+	require_once 'database_connector.php';
 
 	function process_pi_data($post_array, $files_array){
-		$db = mysqli_connect("localhost", "wsn", "raspberryp1", "parking");
-		
-		if (mysqli_connect_errno()) {
-			echo
-				"Error: Could not connect to the database. Please try again later.";
-			exit;
-		}
+		$db = connect_to_db();
 
 		insert_pi_data($post_array, $files_array, $db); // add parameters to this function as needed
 		

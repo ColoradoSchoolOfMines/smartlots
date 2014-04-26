@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+
+<?php
+    require 'admin/authorization.php'
+?>
+
 <html>
     <head profile="http://www.w3.org/2005/10/profile">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,9 +18,11 @@
     </head>
     <body>
         <h1>Administrator Homepage</h1>
-        <a href = "/smartlots/users.html">View Users</a><br>
-        <a href = "/smartlots/users/new">New User</a><br>
-        <a href = "/smartlots/imageViewer">Image Viewer</a><br>
-        <a href = "/smartlots/addImage">Add New Image</a><br>
+        <a href = "/smartlots/admin/users.php">View All Users</a><br>
+        <a href = "/smartlots/admin/create_account.php">New User</a><br>
+        <a href = "/smartlots/admin/image_viewer.php">Image Viewer</a><br>
+        <a href = "/smartlots/admin/add_image.php">Add New Image</a><br>
+        <a href = "/smartlots/admin/view_licenses.php">View Licenses</a><br>
+        <a href = "/smratlots/admin/view_sensor_data.php">View Sensor Data</a><br>
     </body>
 </html>

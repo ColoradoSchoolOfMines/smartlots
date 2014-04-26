@@ -1,13 +1,19 @@
 <?php
+	
+	error_reporting(E_ALL);
+	ini_set('display_errors', '1');
 
 	require 'vendor/autoload.php';
-	require 'insert_fio_data.php';
-	require 'insert_pi_data.php';
-	require 'validate_credentials.php';
-	require 'createAccount.php';
-	require 'queryUsers.php';
+	require 'admin/validate_credentials.php';
 
-	# Start the server/app
+	require 'backend_php/fios.php';
+	require 'backend_php/images.php';
+	require 'backend_php/licenses.php';
+	require 'backend_php/pis.php';
+	require 'backend_php/sensors.php';
+	require 'backend_php/users.php';
+
+	# Create the server/app
 	$app = new \Slim\Slim();
 
 	date_default_timezone_set('America/Denver');
@@ -37,37 +43,82 @@
 		readfile('home.html');
 	});
 
-	# admin interface homepage
-	$app->get('/admin', function() {
-		readfile('admin.html');
-	});
+	######################## USER ROUTES #########################
+	##############################################################
 
-	# create a user account
-	$app->get('/users/new', function() {
-		readfile('createAccount.html');
-	});
-
-	# view all users
 	$app->get('/users', function() {
-		extractAllUsers();
+		extract_all_users();
 	});
 
-	$app->get('/addImage', function() {
-		readfile('addImage.html');
+	$app->get('/users/:id', function($id) {
+		extract_user($id);
 	});
 
-	$app->get('/imageViewer', function() {
-		readfile('imageViewer.html');
-	});
-
-	# adds a new user
 	$app->post('/users', function() {
-		create_account($_POST);
+		create_user($_POST);
 	});
 
-	# deletes a user
 	$app->delete('/user/:id', function($id) {
 		delete_user($id);
+	});
+
+	#################### IMAGE ROUTES ############################
+	##############################################################
+
+	$app->get('/images', function() {
+		extract_all_images();
+	});
+
+	# Return the image with the specified date/timestamp
+	$app->get('/images/:date', function($date) {
+		header('Content-Type: image/jpg');
+		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
+	});
+
+	$app->post('/images', function() {
+		create_image($_POST);
+	});
+
+	$app->delete('/images/:id', function($id) {
+		delete_image($id);
+	});
+
+	############## LICENSE PLATE NUMBER ROUTES ###################
+	##############################################################
+
+	$app->get('/licenses', function() {
+		extract_all_licenses();
+	});
+
+	$app->get('/licenses/:id', function($id) {
+		extract_license($id);
+	});
+
+	$app->post('/licenses', function() {
+		create_license($_POST);
+	});
+
+	$app->delete('/licenses/:id', function($id) {
+		delete_license($id);
+	});
+
+	##################### SENSOR DATA ROUTES #####################
+	##############################################################
+
+	$app->get('/sensors', function() {
+		extract_all_sensors();
+	});
+
+	$app->get('/sensors/:id', function($id) {
+		extract_sensor($id);
+	});
+
+	$app->post('/sensors', function() {
+		create_sensor($_POST);
+	});
+
+	$app->delete('/sensors/:id', function($id) {
+		delete_sensor($id);
 	});
 
 	############ BACK END (PARKING SYSTEM) ROUTES ################
@@ -95,12 +146,6 @@
 			echo "Permission Denied. This invalid attempt has been logged for security purposes.";
 			# Log attempt to database
 		}
-	});
-
-	# Return the image with the specified date/timestamp
-	$app->get('/images/:date', function($date) {
-		header('Content-Type: image/jpg');
-		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
 	});
 
 	$app->run();
