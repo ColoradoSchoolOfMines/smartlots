@@ -8,10 +8,11 @@
         <script src="/smartlots/js/json2.js"></script>
         <script src="/smartlots/js/controller.js"></script>
         <script src="js/templates.js"></script>
+        <script src="js/cookies.js"></script>
         <script>start();</script>
         <title>SmartLots</title>
     </head>
-    <body onload = "insertTemplates('map')">
+    <body onload = "insertTemplates('map'); setUserName();">
         <div id = "header"></div>
         <div id = "menu"></div>
         <div id = "container">

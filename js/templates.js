@@ -16,9 +16,9 @@ function insertTemplates(pageName) {
 	if ( pageName == 'map' ) {
         menu.innerHTML = 
             "<ul>" +
-                "<li class=\"menu-lit\"><a href=\"/smartlots\">map</a></li>" +
-                "<li><a href=\"/smartlots/list\">list</a></li>" +
-                "<li><a href=\"/smartlots/stats\">stats</a></li>" +
+                "<li class=\"menu-lit\"><a href=\"/smartlots/\">map</a></li>" +
+                "<li><a href=\"/smartlots/list.html\">list</a></li>" +
+                "<li><a href=\"/smartlots/stats.html\">stats</a></li>" +
             "</ul>"
     	;
 
@@ -26,16 +26,16 @@ function insertTemplates(pageName) {
 		menu.innerHTML = 
             "<ul>" +
                 "<li><a href=\"/smartlots\">map</a></li>" +
-                "<li class=\"menu-lit\"><a href=\"/smartlots/list\">list</a></li>" +
-                "<li><a href=\"/smartlots/stats\">stats</a></li>" +
+                "<li class=\"menu-lit\"><a href=\"/smartlots/list.html\">list</a></li>" +
+                "<li><a href=\"/smartlots/stats.html\">stats</a></li>" +
             "</ul>"
     	;
 	} else if ( pageName == 'stats') {
 		menu.innerHTML = 
             "<ul>" +
                 "<li><a href=\"/smartlots\">map</a></li>" +
-                "<li><a href=\"/smartlots/list\">list</a></li>" +
-                "<li class=\"menu-lit\"><a href=\"/smartlots/stats\">stats</a></li>" +
+                "<li><a href=\"/smartlots/list.html\">list</a></li>" +
+                "<li class=\"menu-lit\"><a href=\"/smartlots/stats.html\">stats</a></li>" +
             "</ul>"
     	;
 	}
