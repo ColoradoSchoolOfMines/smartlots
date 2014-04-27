@@ -49,6 +49,6 @@ function insertTemplates(pageName) {
         "Design by Roy Stillwell. ACMxlabs.org. Copyright 2014."
     ;
 
-    loginDiv.innerHTML = "<a href = \"/smartlots/admin.php\" target = _blank>Log in</a>";
+    loginDiv.innerHTML = "<a href = \"/smartlots/admin/admin.php\" target = _blank>Log in</a>";
 
 }
