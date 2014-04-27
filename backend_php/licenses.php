@@ -4,7 +4,9 @@
 
 	function extract_all_licenses() {
 		$db = connect_to_db();
-		$select_statement = "select licenses.id, licenses.number, licenses.state, images.url from licenses, images where licenses.image_id = images.id";
+		$select_statement = 
+		"select licenses.id, licenses.number, licenses.state, images.url" .
+		"from licenses, images where licenses.image_id = images.id";
 		
 		$stmt = $db->prepare($select_statement);
 

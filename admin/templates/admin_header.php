@@ -14,13 +14,15 @@
         <script src="/smartlots/js/json2.js"></script>
         <script src="/smartlots/js/controller.js"></script>
         <script src="/smartlots/js/templates.js"></script>
+        <script src="/smartlots/js/licenses.js"></script>
         <title>Smartlots Admin</title>
     </head>
 	<body>
-		<div id = "nav">
+		<div class = "nav">
 			<a href = "/smartlots/admin/admin.php">Admin Home</a> | 
 			<a href = "/smartlots/admin/view_users.php">All Users</a> | 
-			<a href = "/smartlots/admin/create_account.php">Create Account</a> | 
+			<a href = "/smartlots/admin/create_account.php">New User</a> | 
 			<a href = "/smartlots/admin/view_licenses.php">View Licenses</a> | 
-			<a href = "/smartlots/admin/add_image.php">Add Image</a>
+			<a href = "/smartlots/admin/add_image.php">Add Image</a> | 
+			<a href = "/smartlots/admin/view_sensors.php">Sensor Data</a>
 		</div>

@@ -1,11 +1,11 @@
 <?php
     require 'templates/admin_header.php'
-?>  
-    <script>
-        loadLicenses();
-        loadIntradaLicenses();
-    </script>
-	    <h1>All License Plates</h1>
+?>
+        <script>
+            loadLicenses(); loadIntradaLicenses();
+        </script>
+	    <div id = "image_viewer"></div>
+        <h1>All License Plates</h1>
         <table style = "width: 100%;" >
             <tr>
                 <th>OpenALPR</th>
@@ -26,8 +26,6 @@
         </table>
         <br><br>
         <a href = "/smartlots/admin/add_image.php">Add new Image</a>
-	</form>
-    <div id = "image_viewer"></div>
 <?php
     require 'templates/admin_footer.php'
 ?>

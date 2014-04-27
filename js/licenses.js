@@ -28,9 +28,9 @@ function loadLicenses() {
 				var license = licenses[i];
 				licenseTable.innerHTML +=
 					"<tr>" +
-						"<td>" + license.number + "</td>" +
+						"<td><b>" + license.number + "</b></td>" +
 						"<td>" + license.state + "</td>" +
-						"<td><a href = \"#\" onclick = \"displayImage('" + license.url + "')\">" + license.url + "</a></td>" +
+						"<td><a class = \"licenseImageUrl\" href = \"#\" onclick = \"displayImage('" + license.url + "')\">" + license.url + "</a></td>" +
 					"</tr>"
 				;
 			}
@@ -69,9 +69,9 @@ function loadIntradaLicenses() {
 				var license = licenses[i];
 				licenseTable.innerHTML +=
 					"<tr>" +
-						"<td>" + license.number + "</td>" +
+						"<td><b>" + license.number + "</b></td>" +
 						"<td>" + license.state + "</td>" +
-						"<td><a href = \"#\" onclick = \"displayImage('" + license.url + "')\">" + license.url + "</a></td>" +
+						"<td><a class = \"licenseImageUrl\" href = \"#\" onclick = \"displayImage('" + license.url + "')\">" + license.url + "</a></td>" +
 					"</tr>"
 				;
 			}

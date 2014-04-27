@@ -3,18 +3,18 @@
 ?>
 		<h1>Add a new Image</h1>
 		<form action="/smartlots/pidata" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-			<table>
+			<table id = "add_image_table">
 				<tr>
 					<td>Username:</td>
-					<td><input name = "username"></td>
+					<td><input name = "username" size = 30></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input name = "password" type = "password"></td>
+					<td><input name = "password" type = "password" size = 30></td>
 				</tr>
 				<tr>
 					<td>Sensor ID:</td>
-					<td><input name = "id"></td>
+					<td><input name = "id" size = 30></td>
 				</tr>
 				<tr>
 					<td>Image:</td>
