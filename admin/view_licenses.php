@@ -2,7 +2,7 @@
     require 'templates/admin_header.php'
 ?>
         <script>
-            loadLicenses(); loadIntradaLicenses();
+            loadLicenses(''); loadLicenses('intrada');
         </script>
 	    <div id = "image_viewer"></div>
         <h1>All License Plates</h1>
@@ -14,14 +14,14 @@
                 <th>&nbsp;</th>
             </tr>
             <tr>
-                <td style = "width: 40%">
+                <td style = "width: 45%">
                     <table id = "license_table"></table>
                 </td>
-                <td style = "width: 10%">&nbsp;</td>
-                <td style = "width: 40%">
+                <td style = "width: 5%">&nbsp;</td>
+                <td style = "width: 45%">
                     <table id = "intrada_license_table"></table>
                 </td>
-                <td style = "width: 10%">&nbsp;</td>
+                <td style = "width: 5%">&nbsp;</td>
             </tr>
         </table>
         <br><br>

@@ -5,9 +5,14 @@
 	function extract_all_licenses() {
 		$db = connect_to_db();
 		$select_statement = 
-		"select licenses.id, licenses.number, licenses.state, images.url" .
-		"from licenses, images where licenses.image_id = images.id";
-		
+			"select licenses.id, licenses.number, licenses.state, images.url, " .
+			"images.timestamp, lots.lotname " .
+			"from licenses, images, lots, sensormapping " .
+			"where licenses.image_id = images.id " .
+			"and images.sensor_id = sensormapping.sensorid " .
+			"and sensormapping.lotid = lots.lotid"
+		;
+
 		$stmt = $db->prepare($select_statement);
 
 		if ( !($stmt->execute()) ) {
@@ -19,10 +24,17 @@
 
 		$json = "[";
 
-		$stmt->bind_result($id, $number, $state, $url);
+		$stmt->bind_result($id, $number, $state, $url, $timestamp, $lotname);
 
 		while ( $stmt->fetch() ) {
-			$info = array('id'=>$id, 'number'=>$number, 'state'=>$state, 'url'=>$url);
+			$info = array(
+				'id' => $id,
+				'number' => $number,
+				'state' => $state,
+				'url' => $url,
+				'timestamp' => $timestamp,
+				'lotname' => $lotname
+			);
 			$json = $json . json_encode($info) . ",";
 		}
 
