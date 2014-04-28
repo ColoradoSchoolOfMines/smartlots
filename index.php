@@ -13,6 +13,10 @@
 	require 'backend_php/sensors.php';
 	require 'backend_php/users.php';
 
+	function permission_denied() {
+		echo "Error: Permission Denied. Administrator username/password is incorrect.";
+	}
+
 	# Create the server/app
 	$app = new \Slim\Slim();
 
@@ -54,11 +58,13 @@
 		extract_user($id);
 	});
 
-	$app->post('/users', function() {
-		create_user($_POST);
+	$app->post('/users', function() use ($app) {
+		if ( create_user($_POST) ) {
+			$app->redirect('/smartlots/admin/view_users.php');
+		}
 	});
 
-	$app->delete('/user/:id', function($id) {
+	$app->delete('/users/:id', function($id) use ($app) {
 		delete_user($id);
 	});
 
@@ -150,8 +156,7 @@
 		if ( validate($username, $password) ) {
 			process_fio_data($_POST);
 		} else {
-			echo "Permission Denied. This invalid attempt has been logged for security purposes.";
-			# Log attempt to database
+			permission_denied();
 		}
 	});
 
@@ -163,8 +168,7 @@
 			process_pi_data($_POST, $_FILES);
 			$app->redirect('/smartlots/admin/view_licenses.php');
 		} else {
-			echo "Permission Denied. This invalid attempt has been logged for security purposes.";
-			# Log attempt to database
+			permission_denied();
 		}
 	});
 

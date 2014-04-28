@@ -1,10 +1,7 @@
 function loadUsers() {
 
 	var request = new XMLHttpRequest();
-	
-	// We need to get the html for the overlayed page. We'll then insert this html
-	// directly into the html of the directory, so we're not leaving the page to go
-	// to a new one, but are rather staying on the same page.
+
 	request.open("GET", "/smartlots/users", true);
 	request.send(null);
 
@@ -15,46 +12,38 @@ function loadUsers() {
 
 			var users = JSON.parse(response);
 
-			var usersDiv = document.getElementById("users");
-			usersDiv.innerHTML =
-				"<table>" +
-					"<tr>" +
-						"<th>Id</th>" +
-						"<th>Username</th>" +
-						"<th>Action</th>" +
-					"</tr>"
+			var userTable = document.getElementById("user_table");
+			userTable.innerHTML =
+				"<tr>" +
+					"<th>Username</th>" +
+					"<th>Action</th>" +
+				"</tr>"
 			;
 			
 			for ( var i = 0; i < users.length; i++ ) {
 				var user = users[i];
-				usersDiv.innerHTML +=
+				userTable.innerHTML +=
 					"<tr>" +
-						"<td>" + user.id + "</td>" +
 						"<td>" + user.username + "</td>" +
-						"<td><a href = \"#\" onclick = \"removeUser(" + user.id ")\">Remove</a></td>" +
+						"<td><a class = \"deleteLink\" href = \"#\" onclick = \"deleteUser(" + user.id + ")\">Delete</a></td>" +
 					"</tr>"
 				;
 			}
-
-			usersDiv.innerHTML += "</table>";
-
-
 		}
 	}
 
 }
 
-function removeUser(userID) {
+function deleteUser(id) {
 	var request = new XMLHttpRequest();
-
-	// We need to get the html for the overlayed page. We'll then insert this html
-	// directly into the html of the directory, so we're not leaving the page to go
-	// to a new one, but are rather staying on the same page.
-	request.open("DELETE", "/smartlots/users", true);
+	request.open("DELETE", "/smartlots/users/" + id, true);
 	request.send(null);
 	request.onreadystatechange = function() {
-		if ( request.readyState == 4 ) {
-			location.reload();
-		}
+		location.reload();
 	}
+	
 }
+
+
+
+

@@ -8,10 +8,7 @@ function loadLicenses(table) {
 	}
 
 	var request = new XMLHttpRequest();
-	
-	// We need to get the html for the overlayed page. We'll then insert this html
-	// directly into the html of the directory, so we're not leaving the page to go
-	// to a new one, but are rather staying on the same page.
+
 	request.open("GET", "/smartlots/" + tablePrefix + "licenses", true);
 	request.send(null);
 

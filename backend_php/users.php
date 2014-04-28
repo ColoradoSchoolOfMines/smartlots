@@ -10,12 +10,35 @@
 		// Get field information from Create Account page
 		$username = $post_array['username'];
 		$password = md5($post_array['password']);
+		$confirm_password = md5($post_array['confirm_password']);
 
-		if ( is_null($username) || is_null($password) || $username == "" || $password == "" ) {
+		if (
+			is_null($username) || is_null($password) || is_null($confirm_password)
+			|| $username == "" || $password == ""  || $confirm_password == ""
+		) {
 			echo
-				"<div class = \"serverMessage\">" .
-					"Please enter a valid username and password." .
+				"<div>" .
+					"Please fill out all fields." .
+					"<br>" .
+					"<a href = /smartlots/admin/create_account.php>" .
+					"Try again" .
+					"</a>" .
 				"</div>";
+			$db->close();
+			return false;
+		}
+
+		if ( $password != $confirm_password ) {
+			echo
+				"<div>" .
+					"Passwords don't match!" .
+					"<br>" .
+					"<a href = /smartlots/admin/create_account.php>" .
+					"Try again" .
+					"</a>" .
+				"</div>";
+			$db->close();
+			return false;
 		}
 
 		// Check if username exists
@@ -32,12 +55,14 @@
 
 		if ($check_user_name_query_result != null) {
 			echo
-				"<div class = \"serverMessage\">" .
+				"<div>" .
 					"We're sorry, the username '" . $username . "' has already been taken.<br>" .
-					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
+					"<a href = /smartlots/admin/create_account.php>" .
+					"Try again" .
+					"</a>" .
 				"</div>";
 			$db->close();
-			exit;
+			return false;
 		}
 
 		// Prepare user query
@@ -50,36 +75,77 @@
 		if ( !($stmt->execute()) ) {
 			// Result was false (error inserting into database)
 			echo
-				"<div class = \"serverMessage\">" .
+				"<div>" .
 					"Error: Your account was not successfully created. Please try again later.<br>" .
-					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
+					"<a href = /smartlots/admin/create_account.php>" .
+					"Try again" .
+					"</a>" .
 				"</div>";
 			$db->close();
-			exit;
-		} else {
-			echo
-				"<div class = \"serverMessage\">" .
-					"Congratulations, your account was successfully created.<br>" .
-					"<a class = \"serverMessage\" href = \"/smartlots\">Return to Home</a>" .
-				"</div>";
+			return false;
 		}
 
 		// Close the database
 		$db->close();
+		return true;
 
 	}
-	
-	function extract_all_users() {
-		$db = connect_to_db();
-		$select_query = "select id, username from users";
-		// Finish querying database
 
-		echo "[\"" . "{\"username\":\"tsallee\", \"id\":1}" . "\",\"" . "{\"username\":\"brodriguez\", \"id\":2}" . "\"]";
-		
+	function extract_all_users() {
+		// Try to connect to the database
+		$db = connect_to_db();
+
+		$select_statement = 
+			"select users.id, users.username from users";
+		;
+
+		$stmt = $db->prepare($select_statement);
+
+		if ( !($stmt->execute()) ) {
+			echo "Error: Could not get users.";
+			$db->close();
+			exit;
+		}
+
+		$json = "[";
+
+		$stmt->bind_result($id, $username);
+
+		while ( $stmt->fetch() ) {
+			$info = array('id' => $id, 'username' => $username);
+			$json = $json . json_encode($info) . ",";
+		}
+
+		echo substr_replace($json, "]", -1);
+
+		$db->close();
 	}
 
 	function delete_user($userID) {
+		// Try to connect to the database
+		$db = connect_to_db();
+		
+		$delete_statement = 
+			"delete from users where id = ?";
+		;
 
+		$stmt = $db->prepare($delete_statement);
+
+		// Bind the parameter to the query
+		$stmt->bind_param("i", $userID);
+
+		if ( !($stmt->execute()) ) {
+			"<div>" .
+				"Error: Could not delete user. Please try again later.<br>" .
+				"<a href = /smartlots/admin/create_account.php>" .
+				"Try again" .
+				"</a>" .
+			"</div>";
+			$db->close();
+			exit;
+		}
+
+		$db->close();
 	}
 
 ?>

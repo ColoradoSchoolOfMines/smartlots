@@ -15,6 +15,7 @@
         <script src="/smartlots/js/controller.js"></script>
         <script src="/smartlots/js/templates.js"></script>
         <script src="/smartlots/js/licenses.js"></script>
+        <script src="/smartlots/js/users.js"></script>
         <title>Smartlots Admin</title>
     </head>
 	<body>

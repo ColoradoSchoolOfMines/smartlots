@@ -22,6 +22,14 @@
 					</td>
 				</tr>
 				<tr>
+					<td>
+						<label>Confirm Password: </label>
+					</td>
+					<td>
+						<input name = "confirm_password" type = "password" required><br>
+					</td>
+				</tr>
+				<tr>
 					<td colspan = 2 style = "text-align: center;">
 						<input type = "submit">
 					</td>
