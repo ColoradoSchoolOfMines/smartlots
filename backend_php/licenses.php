@@ -10,7 +10,8 @@
 			"from licenses, images, lots, sensormapping " .
 			"where licenses.image_id = images.id " .
 			"and images.sensor_id = sensormapping.sensorid " .
-			"and sensormapping.lotid = lots.lotid"
+			"and sensormapping.lotid = lots.lotid " .
+			"order by images.timestamp desc"
 		;
 
 		$stmt = $db->prepare($select_statement);
@@ -51,7 +52,8 @@
 			"from intrada_licenses, images, lots, sensormapping " .
 			"where intrada_licenses.image_id = images.id " .
 			"and images.sensor_id = sensormapping.sensorid " .
-			"and sensormapping.lotid = lots.lotid"
+			"and sensormapping.lotid = lots.lotid " .
+			"order by images.timestamp desc"
 		;
 
 		$stmt = $db->prepare($select_statement);
@@ -205,6 +207,90 @@
 			$db->close();
 			exit;
 		}
+	}
+
+	function extract_license($licenseID) {
+		// Try to connect to the database
+		$db = connect_to_db();
+		
+		$select_statement = 
+			"select licenses.id, licenses.number, licenses.state, images.url, " .
+			"images.timestamp, lots.lotname " .
+			"from licenses, images, lots, sensormapping " .
+			"where licenses.id = ? " .
+			"and licenses.image_id = images.id " .
+			"and images.sensor_id = sensormapping.sensorid " .
+			"and sensormapping.lotid = lots.lotid"
+		;
+
+		$stmt = $db->prepare($select_statement);
+
+		// Bind the parameter to the query
+		$stmt->bind_param("i", $licenseID);
+
+		if ( !($stmt->execute()) ) {
+			echo "Error: Could not find license. Please try again later.";
+			$db->close();
+			exit;
+		}
+
+		$stmt->bind_result($id, $number, $state, $url, $timestamp, $lotname);
+
+		if ( $stmt->fetch() ) {
+			$info = array(
+				'id' => $id,
+				'number' => $number,
+				'state' => $state,
+				'url' => $url,
+				'timestamp' => $timestamp,
+				'lotname' => $lotname
+			);
+			echo json_encode($info);
+		}
+
+		$db->close();
+	}
+
+	function extract_intrada_license($licenseID) {
+		// Try to connect to the database
+		$db = connect_to_db();
+		
+		$select_statement = 
+			"select intrada_licenses.id, intrada_licenses.number, intrada_licenses.state, images.url, " .
+			"images.timestamp, lots.lotname " .
+			"from intrada_licenses, images, lots, sensormapping " .
+			"where intrada_licenses.id = ? " .
+			"and intrada_licenses.image_id = images.id " .
+			"and images.sensor_id = sensormapping.sensorid " .
+			"and sensormapping.lotid = lots.lotid"
+		;
+
+		$stmt = $db->prepare($select_statement);
+
+		// Bind the parameter to the query
+		$stmt->bind_param("i", $licenseID);
+
+		if ( !($stmt->execute()) ) {
+			echo "Error: Could not find license. Please try again later.";
+			$db->close();
+			exit;
+		}
+
+		$stmt->bind_result($id, $number, $state, $url, $timestamp, $lotname);
+
+		if ( $stmt->fetch() ) {
+			$info = array(
+				'id' => $id,
+				'number' => $number,
+				'state' => $state,
+				'url' => $url,
+				'timestamp' => $timestamp,
+				'lotname' => $lotname
+			);
+			echo json_encode($info);
+		}
+
+		$db->close();
 	}
 
 ?>

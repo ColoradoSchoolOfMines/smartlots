@@ -68,12 +68,12 @@ a {
 	padding: 1em;
 }
 
-#user_table {
+#user_table, #sensor_table {
 	border: 2px solid black;
 	border-collapse: collapse;
 }
 
-#user_table td, #user_table th {
+#user_table td, #user_table th, #sensor_table td, #sensor_table th {
 	border-collapse: collapse;
 	border: 2px solid black;
 	padding: .5em;

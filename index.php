@@ -58,9 +58,8 @@
 
 	$app->post('/users', function() use ($app) {
 		authorize();
-		if ( create_user($_POST) ) {
-			$app->redirect('/smartlots/admin/view_users.php');
-		}
+		create_user($_POST);
+		$app->redirect('/smartlots/admin/view_users.php');
 	});
 
 	$app->delete('/users/:id', function($id) use ($app) {
@@ -83,15 +82,15 @@
 		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
 	});
 
-	$app->post('/images', function() {
-		authorize();
-		create_image($_POST);
-	});
+	// $app->post('/images', function() {
+	// 	authorize();
+	// 	create_image($_POST);
+	// });
 
-	$app->delete('/images/:id', function($id) {
-		authorize();
-		delete_image($id);
-	});
+	// $app->delete('/images/:id', function($id) {
+	// 	authorize();
+	// 	delete_image($id);
+	// });
 
 	############## LICENSE PLATE NUMBER ROUTES ###################
 	##############################################################
@@ -106,15 +105,15 @@
 		extract_license($id);
 	});
 
-	$app->post('/licenses', function() {
-		authorize();
-		create_license($_POST);
-	});
+	// $app->post('/licenses', function() {
+	// 	authorize();
+	// 	create_license($_POST);
+	// });
 
-	$app->delete('/licenses/:id', function($id) {
-		authorize();
-		delete_license($id);
-	});
+	// $app->delete('/licenses/:id', function($id) {
+	// 	authorize();
+	// 	delete_license($id);
+	// });
 
 	############## INTRADA PLATE NUMBER ROUTES ###################
 	##############################################################
@@ -129,15 +128,15 @@
 		extract_intrada_license($id);
 	});
 
-	$app->post('/intrada_licenses', function() {
-		authorize();
-		create_intrada_license($_POST);
-	});
+	// $app->post('/intrada_licenses', function() {
+	// 	authorize();
+	// 	create_intrada_license($_POST);
+	// });
 
-	$app->delete('/intrada_licenses/:id', function($id) {
-		authorize();
-		delete_intrada_license($id);
-	});
+	// $app->delete('/intrada_licenses/:id', function($id) {
+	// 	authorize();
+	// 	delete_intrada_license($id);
+	// });
 
 	##################### SENSOR DATA ROUTES #####################
 	##############################################################
@@ -152,15 +151,15 @@
 		extract_sensor($id);
 	});
 
-	$app->post('/sensors', function() {
-		authorize();
-		create_sensor($_POST);
-	});
+	// $app->post('/sensors', function() {
+	// 	authorize();
+	// 	create_sensor($_POST);
+	// });
 
-	$app->delete('/sensors/:id', function($id) {
-		authorize();
-		delete_sensor($id);
-	});
+	// $app->delete('/sensors/:id', function($id) {
+	// 	authorize();
+	// 	delete_sensor($id);
+	// });
 
 	############ BACK END (PARKING SYSTEM) ROUTES ################
 	##############################################################
