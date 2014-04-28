@@ -39,7 +39,7 @@ function loadLicenses(table) {
 						"<td>" + license.state + "</td>" +
 						"<td>" + license.timestamp + "</td>" +
 						"<td>" + license.lotname + "</td>" +
-						"<td><a class = \"licenseImageUrl\" href = \"#\" onclick = \"displayImage('" + license.url + "')\">" + license.url + "</a></td>" +
+						"<td><a class = \"licenseImageUrl\" href = \"#\" onclick = \"displayImage('" + license.url + "'); return false;\">" + license.url + "</a></td>" +
 						//"<td><a class = \"deleteLink\" href = \"#\" onclick = \"deleteLicense(" + license.id + ")\">Delete</a></td>" +
 					"</tr>"
 				;

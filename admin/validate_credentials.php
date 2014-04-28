@@ -1,5 +1,22 @@
 <?php
 
+	function authorize() {
+		if ( !isset($_SERVER['PHP_AUTH_USER']) ) {
+		  	header('WWW-Authenticate: Basic realm="Administrator Realm"');
+		    header('HTTP/1.0 401 Unauthorized');
+		    die ("Error: Permission Denied. Administrator username/password is incorrect.");
+		}
+
+		$username = $_SERVER['PHP_AUTH_USER'];
+		$password = $_SERVER['PHP_AUTH_PW'];
+
+		if (!validate($username, $password)) {
+		    header('WWW-Authenticate: Basic realm="Administrator Realm"');
+		    header('HTTP/1.0 401 Unauthorized');
+		    die ("Error: Permission Denied. Administrator username/password is incorrect.");
+		}
+	}
+
 	function validate($username, $password) {
 
 		if ( is_null($username) || is_null($password) ) {

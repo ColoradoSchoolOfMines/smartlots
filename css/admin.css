@@ -81,7 +81,7 @@ a {
 
 #image_viewer {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 15%;
 	left: 25%;
 	width: 75%;

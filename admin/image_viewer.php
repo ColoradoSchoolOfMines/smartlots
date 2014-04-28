@@ -14,8 +14,8 @@
 		</script>
 		<h1>Image Viewer</h1>
 	    <label>http://acmxlabs.org/smartlots/images/</label>
-	    <input id = "url_input">
-	    <a href = "#" onclick = "getImage();">Go</a>
+	    <input id = "url_input" size = 60>
+	    <a style = "font-size: 1em;" href = "#" onclick = "getImage();">Go</a>
 	    <br>
 	    <div id = "image_div"></div>
 	</form>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <?php
-    require 'authorization.php'
+    require_once 'validate_credentials.php';
+    authorize();
 ?>
 
 <html>

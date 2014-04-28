@@ -13,10 +13,6 @@
 	require 'backend_php/sensors.php';
 	require 'backend_php/users.php';
 
-	function permission_denied() {
-		echo "Error: Permission Denied. Administrator username/password is incorrect.";
-	}
-
 	# Create the server/app
 	$app = new \Slim\Slim();
 
@@ -51,20 +47,24 @@
 	##############################################################
 
 	$app->get('/users', function() {
+		authorize();
 		extract_all_users();
 	});
 
 	$app->get('/users/:id', function($id) {
+		authorize();
 		extract_user($id);
 	});
 
 	$app->post('/users', function() use ($app) {
+		authorize();
 		if ( create_user($_POST) ) {
 			$app->redirect('/smartlots/admin/view_users.php');
 		}
 	});
 
 	$app->delete('/users/:id', function($id) use ($app) {
+		authorize();
 		delete_user($id);
 	});
 
@@ -72,20 +72,24 @@
 	##############################################################
 
 	$app->get('/images', function() {
+		authorize();
 		extract_all_images();
 	});
 
 	# Return the image with the specified date/timestamp
 	$app->get('/images/:date', function($date) {
+		authorize();
 		header('Content-Type: image/jpg');
 		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
 	});
 
 	$app->post('/images', function() {
+		authorize();
 		create_image($_POST);
 	});
 
 	$app->delete('/images/:id', function($id) {
+		authorize();
 		delete_image($id);
 	});
 
@@ -93,18 +97,22 @@
 	##############################################################
 
 	$app->get('/licenses', function() {
+		authorize();
 		extract_all_licenses();
 	});
 
 	$app->get('/licenses/:id', function($id) {
+		authorize();
 		extract_license($id);
 	});
 
 	$app->post('/licenses', function() {
+		authorize();
 		create_license($_POST);
 	});
 
 	$app->delete('/licenses/:id', function($id) {
+		authorize();
 		delete_license($id);
 	});
 
@@ -112,18 +120,22 @@
 	##############################################################
 
 	$app->get('/intrada_licenses', function() {
+		authorize();
 		extract_all_intrada_licenses();
 	});
 
 	$app->get('/intrada_licenses/:id', function($id) {
+		authorize();
 		extract_intrada_license($id);
 	});
 
 	$app->post('/intrada_licenses', function() {
+		authorize();
 		create_intrada_license($_POST);
 	});
 
 	$app->delete('/intrada_licenses/:id', function($id) {
+		authorize();
 		delete_intrada_license($id);
 	});
 
@@ -131,18 +143,22 @@
 	##############################################################
 
 	$app->get('/sensors', function() {
+		authorize();
 		extract_all_sensors();
 	});
 
 	$app->get('/sensors/:id', function($id) {
+		authorize();
 		extract_sensor($id);
 	});
 
 	$app->post('/sensors', function() {
+		authorize();
 		create_sensor($_POST);
 	});
 
 	$app->delete('/sensors/:id', function($id) {
+		authorize();
 		delete_sensor($id);
 	});
 
@@ -151,25 +167,15 @@
 
 	# Adds data from the parking lot fio sensors to the database
 	$app->post('/fiodata', function() {
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if ( validate($username, $password) ) {
-			process_fio_data($_POST);
-		} else {
-			permission_denied();
-		}
+		authorize();
+		process_fio_data($_POST);
 	});
 
 	# Adds data from the parking lot pi sensors to the database
 	$app->post('/pidata', function() use ($app) {
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if ( validate($username, $password) ) {
-			process_pi_data($_POST, $_FILES);
-			$app->redirect('/smartlots/admin/view_licenses.php');
-		} else {
-			permission_denied();
-		}
+		authorize();
+		process_pi_data($_POST, $_FILES);
+		$app->redirect('/smartlots/admin/view_licenses.php');
 	});
 
 	$app->run();
