@@ -75,7 +75,7 @@
 				'lastcount' => $lastcount,
 				'lotname' => $lotname
 			);
-			echo json_encode($info) . ",";
+			echo json_encode($info);
 		}
 
 		$db->close();
