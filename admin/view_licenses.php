@@ -2,6 +2,7 @@
     require 'templates/admin_header.php'
 ?>
         <script>
+            setBackground('#C3E1F6');
             loadLicenses(''); loadLicenses('intrada');
         </script>
 	    <div id = "image_viewer"></div>

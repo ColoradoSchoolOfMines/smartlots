@@ -105,20 +105,20 @@
 	############## INTRADA PLATE NUMBER ROUTES ###################
 	##############################################################
 
-	$app->get('/intradalicenses', function() {
+	$app->get('/intrada_licenses', function() {
 		extract_all_intrada_licenses();
 	});
 
-	$app->get('/intradalicenses/:id', function($id) {
-		extract_license($id);
+	$app->get('/intrada_licenses/:id', function($id) {
+		extract_intrada_license($id);
 	});
 
-	$app->post('/intradalicenses', function() {
-		create_license($_POST);
+	$app->post('/intrada_licenses', function() {
+		create_intrada_license($_POST);
 	});
 
-	$app->delete('/intradalicenses/:id', function($id) {
-		delete_license($id);
+	$app->delete('/intrada_licenses/:id', function($id) {
+		delete_intrada_license($id);
 	});
 
 	##################### SENSOR DATA ROUTES #####################
@@ -156,11 +156,12 @@
 	});
 
 	# Adds data from the parking lot pi sensors to the database
-	$app->post('/pidata', function() {
+	$app->post('/pidata', function() use ($app) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		if ( validate($username, $password) ) {
 			process_pi_data($_POST, $_FILES);
+			$app->redirect('/smartlots/admin/view_licenses.php');
 		} else {
 			echo "Permission Denied. This invalid attempt has been logged for security purposes.";
 			# Log attempt to database

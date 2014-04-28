@@ -4,6 +4,7 @@
             <a href = "/smartlots/admin/create_account.php">New User</a> | 
             <a href = "/smartlots/admin/view_licenses.php">View Licenses</a> | 
             <a href = "/smartlots/admin/add_image.php">Add Image</a> | 
+            <a href = "/smartlots/admin/image_viewer.php">Image Viewer</a> |
             <a href = "/smartlots/admin/view_sensors.php">Sensor Data</a>
         </div>
     </body>
