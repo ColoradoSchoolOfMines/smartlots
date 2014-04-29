@@ -77,7 +77,7 @@
 
 	# Return the image with the specified date/timestamp
 	$app->get('/images/:date', function($date) {
-		authorize();
+		// DON'T REQUIRE AUTHORIZATION! INTRADA NEEDS TO BE ABLE TO ACCESS IT W/O AUTHORIZATION
 		header('Content-Type: image/jpg');
 		imagejpeg(imagecreatefromjpeg("/var/license_plates/images/$date"));
 	});
